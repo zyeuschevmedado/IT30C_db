@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id'])) {
     exit;
 }
 
- $errors = [];
+$errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);

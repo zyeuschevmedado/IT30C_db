@@ -8,21 +8,21 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Fetch full user info from database
- $user_id = $_SESSION['user_id'];
- $stmt = $conn->prepare("SELECT username, email, created_at FROM users WHERE id = ?");
- $stmt->bind_param("i", $user_id);
- $stmt->execute();
- $result = $stmt->get_result();
- $user = $result->fetch_assoc();
- $stmt->close();
+$user_id = $_SESSION['user_id'];
+$stmt = $conn->prepare("SELECT username, email, created_at FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
 
 // Calculate days since registration
- $created_date = new DateTime($user['created_at']);
- $now = new DateTime();
- $days = $created_date->diff($now)->days;
+$created_date = new DateTime($user['created_at']);
+$now = new DateTime();
+$days = $created_date->diff($now)->days;
 
 // Format the date nicely
- $formatted_date = $created_date->format('F j, Y');
+$formatted_date = $created_date->format('F j, Y');
 ?>
 <!DOCTYPE html>
 <html lang="en">
