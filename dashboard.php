@@ -16,6 +16,12 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
 
+// Check if user exists in database
+if (!$user) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
 // Calculate days since registration
 $created_date = new DateTime($user['created_at']);
 $now = new DateTime();
@@ -32,4 +38,3 @@ $formatted_date = $created_date->format('F j, Y');
     <title>Dashboard - MyApp</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
